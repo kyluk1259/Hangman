@@ -25,12 +25,12 @@ public class Hangman {
         boolean word = false;
         int guesses, randomNum, wordCount, stringEnd;
 
-        String[] tvShows = new String[]{"Spongebob Squarepants", "The Office"};
+        String[] tvShows = new String[]{"Spongebob Squarepants", "The Office", "Family Guy"};
         String[][] hangmanShape = new String[][]{{" O\n", "/", "|"}, {"\\\n", " |\n", "/"}, {" \\"}};
 
         int counter = 0;
         int arrayPos = 0;
-        randomNum = rand.nextInt(1 - 0 + 1); //max - min + 1
+        randomNum = rand.nextInt(2 - 0 + 1); //max - min + 1
         guesses = 7;
         wordCount = 0;
 
@@ -66,13 +66,14 @@ public class Hangman {
             System.out.println("Category: TV SHOWS");
             System.out.println("Number of Words: " + wordCount);
             System.out.println(hidden);
+            words = words.toLowerCase();
 
             //System.out.print(randomNum);
             while (guesses > 0) {
                 boolean disp;
                 String input = JOptionPane.showInputDialog("Number of Guesses Remaining: " + guesses + "\nGuess a letter:");
+                input = input.toLowerCase();
 
-                
                 for (char in : input.toCharArray()) {
                     if (words.toLowerCase().contains(Character.toString(in).toLowerCase())) {
                         for (int i = 0; i < hidden.length(); i++) {
@@ -80,14 +81,13 @@ public class Hangman {
                             if (in == hidden.charAt(i)) {
                                 JOptionPane.showMessageDialog(null, "You Already Guessed This. Try Again.");
                                 break;
-                            }else if (i == words.indexOf(in, i)) {
+                            } else if (i == words.indexOf(in, i)) {
                                 hidden.setCharAt(i, in);
                                 disp = true;
                             }
                         }
 
                     } else {
-                        System.out.println(counter);
                         guesses -= 1;
 
                         if (counter == 3) {
@@ -102,15 +102,13 @@ public class Hangman {
                 }
 
                 if (disp = true) {
-                    System.out.println("\n\n\n\n\n\n\n\n\n\nCategory: TV SHOWS");
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategory: TV SHOWS");
                     System.out.println("Number of Words: " + wordCount);
                     System.out.println(hidden);
                     System.out.println(hangman);
                     disp = false;
                 }
-                
-                
-                
+
                 if (hidden.toString().equalsIgnoreCase(words)) {
                     JOptionPane.showMessageDialog(null, "You Guessed Correctly. You Win!");
                     System.exit(0);
